@@ -7,6 +7,15 @@ class Radio
     @@default_fm_frequency=95.5
     @@default_am_frequency=1010.0
 
+    @@audio_samples=[
+        "Here comes the sun!",
+        "Like a Rolling stone.....",
+        "I Heard it through the Grapevine.",
+        "Stairway to Heaven !!",
+        "A Traffic Report.. La La..",
+        "A news report."
+    ]
+
     def initialize(options={})
         @band=options[:band]||'FM'
         # setting a default frequency
@@ -44,8 +53,8 @@ class Radio
         "station: #{@freq} #{@band}, volume: #{@volume}"
     end
 
-    def switch_band
-        
+    def play
+        puts "The radio plays: " + audio_stream
     end
 
 private
@@ -56,6 +65,11 @@ private
 
     def allowed_frequencies
         @band=='FM' ? @@fm_frequencies : @@am_frequencies
+    end
+
+    def audio_stream
+        # returns a random element from the array.
+        @@audio_samples.sample
     end
 
 end
